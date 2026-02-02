@@ -1,7 +1,0 @@
-(webhook) {
-	reverse_proxy /* :8000
-}
-
-https://moms-laptop-arch.golden-hamlet.ts.net {
-	import webhook
-}
