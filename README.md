@@ -1,6 +1,6 @@
 # mc-webhooks
 
-A simple, modular, async webhook listener for Minecraft server events, built with FastAPI and Typer. It receives event data from a Minecraft server, processes it, and sends notifications to Discord.
+A simple, modular, async webhook listener for Minecraft server events using [this plugin](https://modrinth.com/plugin/minecraftserverapi/), built with FastAPI and Typer. It receives event data from a Minecraft server, processes it, and sends notifications to Discord.
 
 ## Overview
 
