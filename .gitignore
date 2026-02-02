@@ -178,6 +178,7 @@ msar/
 # Local App Data
 data/
 paper/
+caddyfile
 
 # All *.env files
 *.env
