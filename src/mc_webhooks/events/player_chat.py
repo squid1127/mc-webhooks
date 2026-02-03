@@ -41,5 +41,10 @@ class PlayerChatEventProcessor(EventProcessor):
         
         self.context.logger.info(f"Processed player chat event from {player}")
         
+        await self.context.redis.publish(
+            "mc_webhooks:events:player_chat",
+            {"player": player, "message": message}
+        )
+        
 # Register the event processor
 Registry.add(PlayerChatEventProcessor)

@@ -40,5 +40,10 @@ class PlayerCmdEventProcessor(EventProcessor):
         
         self.context.logger.info(f"Processed player command event from {player}")
         
+        await self.context.redis.publish(
+            "mc_webhooks:events:player_command",
+            {"player": player, "command": command}
+        )
+        
 # Register the event processor
 Registry.add(PlayerCmdEventProcessor)

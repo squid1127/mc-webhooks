@@ -18,14 +18,20 @@ class PlayerJoinLeaveEventProcessor(EventProcessor):
             event: The event to process.
         """
         player = event.payload.get("player", "Unknown")
+        joined = event.event_type == "player_login"
         
         embed = Embed(            color=Color.blurple(),
         )
-        embed.set_author(name=player + " | " + ("Joined" if event.event_type == "player_login" else "Left"))
+        embed.set_author(name=player + " | " + ("Joined" if joined else "Left"))
         
         await self.context.notifier.send_embed(embed)
         
         self.context.logger.info(f"Processed player join/leave event from {player}")
+        
+        await self.context.redis.publish(
+            f"mc_webhooks:events:player_{'join' if joined else 'leave'}",
+            {"player": player}
+        )
         
 # Register the event processor
 Registry.add(PlayerJoinLeaveEventProcessor)
